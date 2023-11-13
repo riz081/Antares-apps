@@ -34,7 +34,7 @@ const MenuComponents = () => {
           <TouchableOpacity
             style={styles.card}
             onPress={() => {
-              navigation.navigate('Detail Screen', {data : item})
+              navigation.navigate('List Screen', {data : item})
             }}
           >
             <View style={styles.cardFooter}></View>

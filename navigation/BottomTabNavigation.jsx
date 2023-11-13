@@ -1,7 +1,7 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
-import { Home, Settings } from '../screens'
+import { Home, Settings, Notification } from '../screens'
 import { Ionicons } from '@expo/vector-icons'
 import { COLORS } from '../constants'
 
@@ -31,6 +31,20 @@ const BottomTabNavigation = () => {
                 tabBarIcon: ({focused}) => {
                     return <Ionicons 
                         name={focused ? 'home' : 'home-outline'}
+                        size={24}
+                        color={focused ? COLORS.greenBamboo : COLORS.gray2}
+                    />
+                }
+            }}
+        />
+
+        <Tab.Screen
+            name='Notification'
+            component={Notification}
+            options={{
+                tabBarIcon: ({focused}) => {
+                    return <Ionicons 
+                        name={focused ? 'notifications' : 'notifications-outline'}
                         size={24}
                         color={focused ? COLORS.greenBamboo : COLORS.gray2}
                     />

@@ -1,9 +1,15 @@
 import Home from "./Home"
-import DetailScreens from "./DetailScreens";
+import ListsScreens from "./ListsScreens";
+import MonitorScreens from "./MonitorScreens";
+import ExploreScreens from "./ExploreScreens";
+import Notification from "./Notification"
 import Settings from "./Settings";
 
 export {
     Home,
-    DetailScreens,
+    ListsScreens,
+    MonitorScreens,
+    ExploreScreens,
+    Notification,
     Settings
 }

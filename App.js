@@ -5,7 +5,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import BottomTabNavigation from './navigation/BottomTabNavigation';
 import { useFonts } from 'expo-font'
-import { DetailScreens } from './screens';
+import { ListsScreens, MonitorScreens, ExploreScreens } from './screens';
 
 export default function App() {
 
@@ -233,8 +233,20 @@ export default function App() {
         />
 
         <Stack.Screen
-          name='Detail Screen'
-          component={ DetailScreens }
+          name='List Screen'
+          component={ ListsScreens }
+          options={{headerShown : false}}
+        />
+
+        <Stack.Screen
+          name='Monitor Screen'
+          component={ MonitorScreens }
+          options={{headerShown : false}}
+        />
+
+        <Stack.Screen
+          name='Explore Screen'
+          component={ ExploreScreens }
           options={{headerShown : false}}
         />
       </Stack.Navigator>
