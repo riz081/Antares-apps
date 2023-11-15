@@ -240,7 +240,8 @@ const MonitorScreens = ({ navigation }) => {
                     potas : Pt,
                     konduk : Sc,
                     temp : St,
-                    lembap : Sm
+                    lembap : Sm,
+                    image : image
                 })}>
                     {/* {console.log(item.value)} */}
                     <View style={styles.menuItem(0.8)}>
