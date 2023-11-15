@@ -39,29 +39,80 @@ const ExploreScreens = ({ navigation }) => {
             explore === 'npk' ? 
             <ImageBackground
                 source={require('../assets/images/background/npkScreen.png')}
-                style={{
-                    width : Width,
-                    height : Height,
-                    top : -15,
-                }}
+                style={styles.imageBg(Width, Height)}
             >
-                <View style={{
-                    borderWidth : 1,
-                    borderColor : 'red',
-                    width : Width,
-                    height : '54%',
-                    justifyContent : 'center',
-                    alignItems : 'center'
-                }}>
+                <View style={styles.boxTop(Width)}>
                     <Image
                         source={require('../assets/images/explore/npk.png')}
                         style={{
-                            width : 49,
-                            height : 50
+                            width : 200,
+                            height : 200,
+                            marginBottom : SIZES.xLarge
                         }}
                     />
-                    <Text>{title}</Text>
-                    <Text>{`${nitro}, ${fosfor}, ${potas}`}</Text>
+                    <Text style={{
+                        fontFamily : 'extrabold',
+                        fontSize : SIZES.xLarge + 10,
+                        marginBottom : SIZES.medium
+                    }}>{title}</Text>
+                    <Image
+                        source={require('../assets/images/explore/line1.png')}
+                        style={{
+                            width : Width - 13,
+                            height : '18%'
+                        }}
+                    />
+                </View>
+                <View style={{
+                    borderWidth : 1, 
+                    borderColor : 'green',
+                    width : Width,
+                    height : '38%',
+                    padding : SIZES.large,
+                    flexDirection : 'row',
+                    justifyContent : 'space-evenly'
+                }}>
+                    <TouchableOpacity style={{
+                        flexDirection : 'column',
+                        alignItems : 'center',
+                        marginHorizontal : SIZES.large + 9
+                    }}>
+                        <Text style={{
+                            fontFamily : 'semibold',
+                            textTransform : 'capitalize',
+                            fontSize : SIZES.medium + 1,
+                            marginBottom : SIZES.medium - 6
+                        }}>nitrogen</Text>
+                        <Text>{nitro}</Text>                    
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{
+                        flexDirection : 'column',
+                        alignItems : 'center',
+                        marginHorizontal : SIZES.large + 9
+                    }}>
+                        <Text style={{
+                            fontFamily : 'semibold',
+                            textTransform : 'capitalize',
+                            fontSize : SIZES.medium + 1,
+                            marginBottom : SIZES.medium - 6
+                        }}>fosfor</Text>
+                        <Text>{fosfor}</Text>                    
+                    </TouchableOpacity>
+
+                    <TouchableOpacity style={{
+                        flexDirection : 'column',
+                        alignItems : 'center',
+                        marginHorizontal : SIZES.large + 9
+                    }}>
+                        <Text style={{
+                            fontFamily : 'semibold',
+                            textTransform : 'capitalize',
+                            fontSize : SIZES.medium + 1,
+                            marginBottom : SIZES.medium - 6
+                        }}>potassium</Text>
+                        <Text>{potas}</Text>                    
+                    </TouchableOpacity>
                 </View>
             </ImageBackground>
             :
@@ -90,5 +141,19 @@ export default ExploreScreens
 const styles = StyleSheet.create({
     container : {
         flex : 1,
-    }
+    },
+    imageBg : (lebar, tinggi) => ({
+        width : lebar,
+        height : tinggi,
+        top : -15,
+    }),
+    boxTop : (lebar) => ({
+        borderWidth : 1,
+        borderColor : 'red',
+        width : lebar,
+        height : '54%',
+        justifyContent : 'center',
+        alignItems : 'center',
+        top : SIZES.large + 6
+    })
 })
