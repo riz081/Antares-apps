@@ -14,9 +14,9 @@ const ExploreScreens = ({ navigation }) => {
     const [explore, setExplore] = useState('')
 
     const exploreMenu = [
-        { id : 1, title : 'Nitrogen', uri : require('../assets/images/explore/nitrogen.png')},
-        { id: 2, title: 'Fosfor', uri : require('../assets/images/explore/fosfor.png')},
-        { id: 3, title: 'Photasium', uri : require('../assets/images/explore/potasium.png')}
+        { id : 1, title : 'Nitrogen', uri : require('../assets/images/explore/nitrogen.png'), subtitle : 'nitrogen', value : nitro},
+        { id: 2, title: 'Fosfor', uri : require('../assets/images/explore/fosfor.png'), subtitle : 'fosfor', value : fosfor},
+        { id: 3, title: 'Photasium', uri : require('../assets/images/explore/potasium2.png'), subtitle : 'potassium', value : potas}
     ]
 
     useEffect(() => {
@@ -40,79 +40,31 @@ const ExploreScreens = ({ navigation }) => {
             <ImageBackground
                 source={require('../assets/images/background/npkScreen.png')}
                 style={styles.imageBg(Width, Height)}
-            >
+            >                
                 <View style={styles.boxTop(Width)}>
                     <Image
                         source={require('../assets/images/explore/npk.png')}
-                        style={{
-                            width : 200,
-                            height : 200,
-                            marginBottom : SIZES.xLarge
-                        }}
+                        style={styles.boxTopImg}
                     />
-                    <Text style={{
-                        fontFamily : 'extrabold',
-                        fontSize : SIZES.xLarge + 10,
-                        marginBottom : SIZES.medium
-                    }}>{title}</Text>
+                    <Text style={styles.boxTopTxt}>{title}</Text>
                     <Image
                         source={require('../assets/images/explore/line1.png')}
-                        style={{
-                            width : Width - 13,
-                            height : '18%'
-                        }}
+                        style={styles.lineImg(Width)}
                     />
                 </View>
-                <View style={{
-                    borderWidth : 1, 
-                    borderColor : 'green',
-                    width : Width,
-                    height : '38%',
-                    padding : SIZES.large,
-                    flexDirection : 'row',
-                    justifyContent : 'space-evenly'
-                }}>
-                    <TouchableOpacity style={{
-                        flexDirection : 'column',
-                        alignItems : 'center',
-                        marginHorizontal : SIZES.large + 9
-                    }}>
-                        <Text style={{
-                            fontFamily : 'semibold',
-                            textTransform : 'capitalize',
-                            fontSize : SIZES.medium + 1,
-                            marginBottom : SIZES.medium - 6
-                        }}>nitrogen</Text>
-                        <Text>{nitro}</Text>                    
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{
-                        flexDirection : 'column',
-                        alignItems : 'center',
-                        marginHorizontal : SIZES.large + 9
-                    }}>
-                        <Text style={{
-                            fontFamily : 'semibold',
-                            textTransform : 'capitalize',
-                            fontSize : SIZES.medium + 1,
-                            marginBottom : SIZES.medium - 6
-                        }}>fosfor</Text>
-                        <Text>{fosfor}</Text>                    
-                    </TouchableOpacity>
-
-                    <TouchableOpacity style={{
-                        flexDirection : 'column',
-                        alignItems : 'center',
-                        marginHorizontal : SIZES.large + 9
-                    }}>
-                        <Text style={{
-                            fontFamily : 'semibold',
-                            textTransform : 'capitalize',
-                            fontSize : SIZES.medium + 1,
-                            marginBottom : SIZES.medium - 6
-                        }}>potassium</Text>
-                        <Text>{potas}</Text>                    
-                    </TouchableOpacity>
+                <View style={styles.boxBot(Width)}>
+                    {
+                        exploreMenu.map(item =>(
+                            <TouchableOpacity key={item.id} style={styles.btnMonitor}>
+                                <Text style={styles.txtMonitor}>{item.subtitle}</Text>
+                                <Image
+                                    source={item.uri}
+                                    style={styles.imgIcon}
+                                />
+                                <Text style={styles.txtValues}>{item.value}</Text>                    
+                            </TouchableOpacity>
+                        ))
+                    }
                 </View>
             </ImageBackground>
             :
@@ -148,12 +100,56 @@ const styles = StyleSheet.create({
         top : -15,
     }),
     boxTop : (lebar) => ({
-        borderWidth : 1,
-        borderColor : 'red',
         width : lebar,
         height : '54%',
         justifyContent : 'center',
         alignItems : 'center',
         top : SIZES.large + 6
-    })
+    }),
+    boxTopImg : {
+        width : 200,
+        height : 200,
+        marginBottom : SIZES.xLarge
+    },
+    boxTopTxt : {
+        fontFamily : 'extrabold',
+        fontSize : SIZES.xLarge + 10,
+        marginBottom : SIZES.medium
+    },
+    lineImg : (lebar) => ({
+        width : lebar - 13,
+        height : '18%'
+    }),
+    boxBot : (lebar) =>  ({
+        width : lebar,
+        height : '38%',
+        padding : SIZES.large,
+        flexDirection : 'row',
+        justifyContent : 'space-evenly'
+    }),
+    btnMonitor : {
+        flexDirection : 'column',
+        alignItems : 'center',
+        marginHorizontal : SIZES.large
+    },
+    txtMonitor : {
+        fontFamily : 'bold',
+        textTransform : 'capitalize',
+        fontSize : SIZES.medium -2,
+        marginBottom : SIZES.small - 7,
+        color : COLORS.gray
+    },
+    imgIcon : {
+        width : 93,
+        height : 74,
+        marginVertical : SIZES.medium - 9
+    },
+    txtValues : {
+        fontFamily : 'semibold',
+        textTransform : 'capitalize',
+        fontSize : SIZES.large,
+        marginTop : SIZES.small - 7,
+        color : COLORS.gray
+    }
+
 })
