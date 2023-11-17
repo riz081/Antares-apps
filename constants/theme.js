@@ -19,6 +19,7 @@ const COLORS = {
     greenJungle : '#26C281',
     greenOcean : '#4DAF7C',
     lightWhite: "#FAFAFC",
+    lowWhite : '#C3C2C2'
 };
   
   

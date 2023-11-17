@@ -13,10 +13,16 @@ const ExploreScreens = ({ navigation }) => {
     // console.log(id, title, ph, nitro, fosfor, potas, konduk, temp, lembap)
     const [explore, setExplore] = useState('')
 
-    const exploreMenu = [
+    const exploreNpk = [
         { id : 1, title : 'Nitrogen', uri : require('../assets/images/explore/nitrogen.png'), subtitle : 'nitrogen', value : nitro},
         { id: 2, title: 'Fosfor', uri : require('../assets/images/explore/fosfor.png'), subtitle : 'fosfor', value : fosfor},
         { id: 3, title: 'Photasium', uri : require('../assets/images/explore/potasium2.png'), subtitle : 'potassium', value : potas}
+    ]
+
+    const exploreTanah = [
+        { id : 1, title : 'Kelembapan', uri : require('../assets/images/explore/humadity.png'), subtitle : 'kelembapan', value : lembap},
+        { id: 2, title: 'Konduktivitas', uri : require('../assets/images/explore/conductivity.png'), subtitle : 'konduktivitas', value : konduk},
+        { id: 3, title: 'Temperature', uri : require('../assets/images/explore/temprature.png'), subtitle : 'temperature', value : temp}
     ]
 
     useEffect(() => {
@@ -41,27 +47,27 @@ const ExploreScreens = ({ navigation }) => {
                 source={require('../assets/images/background/npkScreen.png')}
                 style={styles.imageBg(Width, Height)}
             >                
-                <View style={styles.boxTop(Width)}>
+                <View style={styles.boxTop(Width, SIZES.large + 36)}>
                     <Image
                         source={require('../assets/images/explore/npk.png')}
-                        style={styles.boxTopImg}
+                        style={styles.boxTopImg(320, 200, 0)}
                     />
-                    <Text style={styles.boxTopTxt}>{title}</Text>
+                    <Text style={styles.boxTopTxt('extrabold', SIZES.xLarge + 10, COLORS.black)}>{title}</Text>
                     <Image
                         source={require('../assets/images/explore/line1.png')}
-                        style={styles.lineImg(Width)}
+                        style={styles.lineImg(Width, '18%')}
                     />
                 </View>
                 <View style={styles.boxBot(Width)}>
                     {
-                        exploreMenu.map(item =>(
+                        exploreNpk.map(item =>(
                             <TouchableOpacity key={item.id} style={styles.btnMonitor}>
-                                <Text style={styles.txtMonitor}>{item.subtitle}</Text>
+                                <Text style={styles.txtMonitor('bold', SIZES.medium -2, COLORS.gray)}>{item.subtitle}</Text>
                                 <Image
                                     source={item.uri}
                                     style={styles.imgIcon}
                                 />
-                                <Text style={styles.txtValues}>{item.value}</Text>                    
+                                <Text style={styles.txtValues('semibold', SIZES.large, COLORS.gray)}>{item.value}</Text>                    
                             </TouchableOpacity>
                         ))
                     }
@@ -70,17 +76,65 @@ const ExploreScreens = ({ navigation }) => {
             :
             //Screen Tanah
             explore === 'tanah' ?
-            <View>
-                <Text>{title}</Text>
-                <Text>{`${lembap}, ${konduk}, ${temp}`}</Text>
-            </View>
+            <ImageBackground
+                source={require('../assets/images/background/tanahScreen.png')}
+                style={styles.imageBg(Width, Height)}
+            >                
+                <View style={styles.boxTop(Width, SIZES.large + 36)}>
+                    <Image
+                        source={require('../assets/images/explore/soil.png')}
+                        style={styles.boxTopImg(200, 110, 15, SIZES.xLarge)}
+                    />
+                    <Text style={styles.boxTopTxt('semibold', SIZES.xLarge + 10, COLORS.white)}>{title}</Text>
+                    <Image
+                        source={require('../assets/images/explore/line2.png')}
+                        style={styles.lineImg(Width, '21%')}
+                    />
+                </View>
+                <View style={styles.boxBot(Width)}>
+                    {
+                        exploreTanah.map(item =>(
+                            <TouchableOpacity key={item.id} style={styles.btnMonitor}>
+                                <Text style={styles.txtMonitor('bold', SIZES.medium -2, COLORS.lowWhite)}>{item.subtitle}</Text>
+                                <Image
+                                    source={item.uri}
+                                    style={styles.imgIcon}
+                                />
+                                <Text style={styles.txtValues('semibold', SIZES.large, COLORS.lowWhite)}>{item.value}</Text>                    
+                            </TouchableOpacity>
+                        ))
+                    }
+                </View>
+            </ImageBackground>
             :
             //Screen PH
             explore === 'ph' ?
-            <View>
-                <Text>{title}</Text>
-                <Text>{ph}</Text>
-            </View> 
+            <ImageBackground
+                source={require('../assets/images/background/phScreen.png')}
+                style={styles.imageBg(Width, Height, 'center', 'center')}
+            >                
+                <View style={styles.boxTop(Width, -SIZES.xxLarge)}>
+                    <Image
+                        source={require('../assets/images/explore/ph.png')}
+                        style={styles.boxTopImg(300, 300, 0, -14)}
+                    />
+                    <TouchableOpacity>
+                        <Text style={styles.boxTopTxt('semibold', SIZES.xxLarge + 10, COLORS.lowWhite)}>{title}</Text>
+                    </TouchableOpacity>
+                    <Image
+                        source={require('../assets/images/explore/line3.png')}
+                        style={styles.lineImg(Width, '21%')}
+                    />
+                    <TouchableOpacity>
+                        <Text style={{
+                            fontFamily : 'bold',
+                            fontSize : SIZES.xLarge + 10,
+                            marginBottom : SIZES.medium,
+                            color : COLORS.lowWhite
+                        }}>{ph}</Text>
+                    </TouchableOpacity>
+                </View>
+            </ImageBackground>
             : 
             <Text>ExploreScreens</Text>
         }
@@ -94,62 +148,67 @@ const styles = StyleSheet.create({
     container : {
         flex : 1,
     },
-    imageBg : (lebar, tinggi) => ({
+    imageBg : (lebar, tinggi, justifyContent, alignItems) => ({
         width : lebar,
         height : tinggi,
         top : -15,
+        justifyContent : justifyContent,
+        alignItems : alignItems
     }),
-    boxTop : (lebar) => ({
+    boxTop : (lebar, top) => ({
         width : lebar,
         height : '54%',
         justifyContent : 'center',
         alignItems : 'center',
-        top : SIZES.large + 6
+        top : top,
     }),
-    boxTopImg : {
-        width : 200,
-        height : 200,
-        marginBottom : SIZES.xLarge
-    },
-    boxTopTxt : {
-        fontFamily : 'extrabold',
-        fontSize : SIZES.xLarge + 10,
-        marginBottom : SIZES.medium
-    },
-    lineImg : (lebar) => ({
+    boxTopImg : (lebar, tinggi, left, marginBottom) => ({
+        width : lebar,
+        height : tinggi,
+        marginBottom : marginBottom,
+        left : left
+    }),
+    boxTopTxt : (fontFamily, size, color) => ({
+        fontFamily : fontFamily,
+        fontSize : size,
+        marginBottom : SIZES.medium,
+        color : color
+    }),
+    lineImg : (lebar, tinggi) => ({
         width : lebar - 13,
-        height : '18%'
+        height : tinggi
     }),
     boxBot : (lebar) =>  ({
         width : lebar,
         height : '38%',
         padding : SIZES.large,
         flexDirection : 'row',
-        justifyContent : 'space-evenly'
+        justifyContent : 'space-evenly',
+        top : SIZES.large + 33,
     }),
     btnMonitor : {
         flexDirection : 'column',
         alignItems : 'center',
         marginHorizontal : SIZES.large
     },
-    txtMonitor : {
-        fontFamily : 'bold',
+    txtMonitor : (fontFamily, size, color) => ({
+        fontFamily : fontFamily,
         textTransform : 'capitalize',
-        fontSize : SIZES.medium -2,
+        fontSize : size,
         marginBottom : SIZES.small - 7,
-        color : COLORS.gray
-    },
+        color : color
+    }),
     imgIcon : {
         width : 93,
         height : 74,
         marginVertical : SIZES.medium - 9
     },
-    txtValues : {
-        fontFamily : 'semibold',
+    txtValues : (fontFamily, size, color) => ({
+        fontFamily : fontFamily,
         textTransform : 'capitalize',
-        fontSize : SIZES.large,
+        fontSize : size,
         marginTop : SIZES.small - 7,
-        color : COLORS.gray
-    }
+        color : color
+    })
 
 })
