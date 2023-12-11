@@ -61,7 +61,7 @@ const ExploreScreens = ({ navigation }) => {
                 <View style={styles.boxBot(Width)}>
                     {
                         exploreNpk.map(item =>(
-                            <TouchableOpacity key={item.id} style={styles.btnMonitor}>
+                            <TouchableOpacity onPress={() => navigation.navigate('History Screen', {title : item.subtitle})} key={item.id} style={styles.btnMonitor}>
                                 <Text style={styles.txtMonitor('bold', SIZES.medium -2, COLORS.gray)}>{item.subtitle}</Text>
                                 <Image
                                     source={item.uri}
@@ -94,7 +94,7 @@ const ExploreScreens = ({ navigation }) => {
                 <View style={styles.boxBot(Width)}>
                     {
                         exploreTanah.map(item =>(
-                            <TouchableOpacity key={item.id} style={styles.btnMonitor}>
+                            <TouchableOpacity onPress={() => navigation.navigate('History Screen', {title : item.subtitle})} key={item.id} style={styles.btnMonitor}>
                                 <Text style={styles.txtMonitor('bold', SIZES.medium -2, COLORS.lowWhite)}>{item.subtitle}</Text>
                                 <Image
                                     source={item.uri}
@@ -118,21 +118,13 @@ const ExploreScreens = ({ navigation }) => {
                         source={require('../assets/images/explore/ph.png')}
                         style={styles.boxTopImg(300, 300, 0, -14)}
                     />
-                    <TouchableOpacity>
-                        <Text style={styles.boxTopTxt('semibold', SIZES.xxLarge + 10, COLORS.lowWhite)}>{title}</Text>
+                    <TouchableOpacity onPress={() => navigation.navigate('History Screen', {title : title})}>
+                        <Text style={styles.boxTopTxt('semibold', SIZES.xxLarge + 10, COLORS.lightWhite)}>{ph}</Text>
                     </TouchableOpacity>
                     <Image
                         source={require('../assets/images/explore/line3.png')}
                         style={styles.lineImg(Width, '21%')}
                     />
-                    <TouchableOpacity>
-                        <Text style={{
-                            fontFamily : 'bold',
-                            fontSize : SIZES.xLarge + 10,
-                            marginBottom : SIZES.medium,
-                            color : COLORS.lowWhite
-                        }}>{ph}</Text>
-                    </TouchableOpacity>
                 </View>
             </ImageBackground>
             : 

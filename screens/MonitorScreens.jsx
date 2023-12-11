@@ -258,6 +258,25 @@ const MonitorScreens = ({ navigation }) => {
                     </View>
                 </TouchableOpacity>
             ))}
+            <View style={{justifyContent : 'center', alignItems : 'center'}}>
+                <TouchableOpacity style={{
+                    borderWidth : 1, 
+                    borderColor : COLORS.lightWhite, 
+                    backgroundColor : COLORS.greenOcean,
+                    marginTop : 10,
+                    padding : 10
+                }} onPress={() => navigation.navigate('Forecasting Screen', {
+                    ph : Ph,
+                    nitro : Ng,
+                    fosfor : Ff,
+                    potas : Pt,
+                    konduk : Sc,
+                    temp : St,
+                    lembap : Sm,
+                })}>
+                    <Text>forecasting</Text>
+                </TouchableOpacity>
+            </View>
         </View>
       </View>
     </View>
